@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from PIL import Image, ImageTk
 import Dashboard
 
 def on_enter_button(e):
@@ -65,14 +66,28 @@ def new_product_page():
 def main_page():
     root = tk.Tk()
     root.title("Store Management System")
-    root.geometry("500x500")
+    root.geometry("800x600")
     
     # Main page background color
     root.configure(bg="#f0f0f5")
 
-    # Title
-    title = tk.Label(root, text="Store Management System", font=("Helvetica", 24, "bold"), fg="#5D3FD3", bg="#f0f0f5", pady=20)
-    title.pack()
+    # Create a frame for the title and logo
+    header_frame = tk.Frame(root, bg="#f0f0f5")
+    header_frame.pack(pady=20)
+
+    # Load and resize the logo inside the main_page function
+    original_image = Image.open("F:/Python Code-Lab/Store-Management-System-Project/logo.png")  # Correct the path format
+    logo_image = original_image.resize((100, 100), Image.LANCZOS)  # Resize to 100x100 pixels
+    logo_image = ImageTk.PhotoImage(logo_image)  # Convert to PhotoImage for Tkinter
+
+    # Logo Label
+    logo_label = tk.Label(header_frame, image=logo_image, bg="#f0f0f5")
+    logo_label.image = logo_image  # Keep a reference to avoid garbage collection
+    logo_label.pack(side=tk.LEFT)  # Align the logo to the left
+
+    # Title Label
+    title = tk.Label(header_frame, text="Store Management System", font=("Helvetica", 24, "bold"), fg="#5D3FD3", bg="#f0f0f5", padx=20)
+    title.pack(side=tk.LEFT)  # Align the title to the left with padding
 
     button_style = {
         "font": ("Helvetica", 14, "bold"),  # Using bold Helvetica for a more beautiful appearance
