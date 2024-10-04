@@ -17,7 +17,7 @@ def product_list(category):
 def product_price(product):
     return float(df[df["PRODUCT_NAME"] == product]["LIST_PRICE"])
 
-Total_stocks = df["Stock"].sum()
+Total_stocks = df["STOCKS"].sum()
 
 conn.close()
 
