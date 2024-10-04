@@ -1,156 +1,196 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-import Dashboard
 
-def on_enter_button(e):
-    e.widget['background'] = '#5D3FD3'  # Darker purple
-    e.widget['foreground'] = 'black'     # Text color black
+# Dashboard Page Frame
+class DashboardPage(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.create_widgets()
 
-def on_leave_button(e):
-    e.widget['background'] = '#D8BFD8'  # Light purple
-    e.widget['foreground'] = '#5D3FD3'  # Text color back to purple
+    def create_widgets(self):
+        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
+        center_frame.pack(pady=50, padx=(400, 0))
 
-def open_stock_in():
-    stock_in_page()  # Correctly open Stock In page
+        total_stock_label = tk.Label(center_frame, text="Total Stock: 100", bg="#E6F7FF", fg="#2F4F4F")
+        total_stock_label.pack(pady=20)
 
-def open_dashboard():
-    Dashboard.dashboard_page()  # Correctly open Dashboard page
+        vendor_count_label = tk.Label(center_frame, text="Vendors: 5", bg="#E6F7FF", fg="#2F4F4F")
+        vendor_count_label.pack(pady=20)
 
-def open_vendor_login():
-    messagebox.showinfo("Vendor Login", "Navigating to Vendor Login")
+        recent_activity_label = tk.Label(center_frame, text="Recent Activity: Product X added", bg="#E6F7FF", fg="#2F4F4F")
+        recent_activity_label.pack(pady=20)
 
-def open_new_product():
-    new_product_page()  # Correctly open New Product page
+# New Product Page Frame
+class NewProductPage(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.create_widgets()
 
-# Dashboard Page
-def dashboard_page():
-    dashboard_window = tk.Toplevel()  # Create a new window
-    dashboard_window.title("Dashboard")
-    dashboard_window.geometry("400x300")
+    def create_widgets(self):
+        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
+        center_frame.pack(pady=50, padx=(400, 0))
 
-    total_stock_label = tk.Label(dashboard_window, text="Total Stock: 100")
-    total_stock_label.pack(pady=20)
+        name_label = tk.Label(center_frame, text="Product Name", bg="#E6F7FF", fg="#2F4F4F")
+        name_label.pack(pady=5)
+        name_entry = tk.Entry(center_frame)
+        name_entry.pack(pady=5)
 
-    vendor_count_label = tk.Label(dashboard_window, text="Vendors: 5")
-    vendor_count_label.pack(pady=20)
+        price_label = tk.Label(center_frame, text="Price", bg="#E6F7FF", fg="#2F4F4F")
+        price_label.pack(pady=5)
+        price_entry = tk.Entry(center_frame)
+        price_entry.pack(pady=5)
 
-    recent_activity_label = tk.Label(dashboard_window, text="Recent Activity: Product X added")
-    recent_activity_label.pack(pady=20)
+        category_label = tk.Label(center_frame, text="Category", bg="#E6F7FF", fg="#2F4F4F")
+        category_label.pack(pady=5)
+        category_entry = tk.Entry(center_frame)
+        category_entry.pack(pady=5)
 
-# New Product Page
-def new_product_page():
-    new_product_window = tk.Toplevel()  # Create a new window
-    new_product_window.title("New Product")
-    new_product_window.geometry("400x300")
+        add_btn = tk.Button(center_frame, text="Add Product", command=lambda: messagebox.showinfo("Product", "Product Added"),
+                            bg="#AEB8E1", fg="#2A2D34")
+        add_btn.pack(pady=20)
 
-    name_label = tk.Label(new_product_window, text="Product Name")
-    name_label.pack()
-    name_entry = tk.Entry(new_product_window)
-    name_entry.pack()
+# Stock In Page Frame
+class StockInPage(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.create_widgets()
 
-    price_label = tk.Label(new_product_window, text="Price")
-    price_label.pack()
-    price_entry = tk.Entry(new_product_window)
-    price_entry.pack()
+    def create_widgets(self):
+        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
+        center_frame.pack(pady=50, padx=(400, 0))
 
-    category_label = tk.Label(new_product_window, text="Category")
-    category_label.pack()
-    category_entry = tk.Entry(new_product_window)
-    category_entry.pack()
+        product_label = tk.Label(center_frame, text="Product Name", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
+        product_label.pack(pady=5)
 
-    add_btn = tk.Button(new_product_window, text="Add Product", command=lambda: messagebox.showinfo("Product", "Product Added"))
-    add_btn.pack(pady=20)
+        product_entry = tk.Entry(center_frame)
+        product_entry.pack(pady=5)
 
-# Main Page Layout with Updated Styles
-def main_page():
-    root = tk.Tk()
-    root.title("Store Management System")
-    root.geometry("800x600")
-    
-    # Main page background color
-    root.configure(bg="#f0f0f5")
+        quantity_label = tk.Label(center_frame, text="Quantity", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
+        quantity_label.pack(pady=5)
 
-    # Create a frame for the title and logo
-    header_frame = tk.Frame(root, bg="#f0f0f5")
-    header_frame.pack(pady=20)
+        quantity_entry = tk.Entry(center_frame)
+        quantity_entry.pack(pady=5)
 
-    # Load and resize the logo inside the main_page function
-    original_image = Image.open("F:/Python Code-Lab/Store-Management-System-Project/logo.png")  # Correct the path format
-    logo_image = original_image.resize((100, 100), Image.LANCZOS)  # Resize to 100x100 pixels
-    logo_image = ImageTk.PhotoImage(logo_image)  # Convert to PhotoImage for Tkinter
+        price_label = tk.Label(center_frame, text="Price", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
+        price_label.pack(pady=5)
 
-    # Logo Label
-    logo_label = tk.Label(header_frame, image=logo_image, bg="#f0f0f5")
-    logo_label.image = logo_image  # Keep a reference to avoid garbage collection
-    logo_label.pack(side=tk.LEFT)  # Align the logo to the left
+        price_entry = tk.Entry(center_frame)
+        price_entry.pack(pady=5)
 
-    # Title Label
-    title = tk.Label(header_frame, text="Store Management System", font=("Helvetica", 24, "bold"), fg="#5D3FD3", bg="#f0f0f5", padx=20)
-    title.pack(side=tk.LEFT)  # Align the title to the left with padding
+        submit_btn = tk.Button(center_frame, text="Submit", font=("Helvetica", 12, "bold"), bg="#AEB8E1", 
+                                fg="#2A2D34", width=15, height=1, bd=2, relief="solid")
+        submit_btn.pack(pady=20)
 
-    button_style = {
-        "font": ("Helvetica", 14, "bold"),  # Using bold Helvetica for a more beautiful appearance
-        "bg": "#D8BFD8",  # Light purple
-        "fg": "#5D3FD3",  # Darker purple for text
-        "width": 20,
-        "height": 2,
-        "bd": 2,
-        "relief": "solid"
-    }
+# Cart Page Frame
+class CartPage(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.create_widgets()
 
-    # Buttons for navigation with hover effect
-    dashboard_btn = tk.Button(root, text="Dashboard", command=open_dashboard, **button_style)  # Added correct command
-    dashboard_btn.pack(pady=10)
-    dashboard_btn.bind("<Enter>", on_enter_button)
-    dashboard_btn.bind("<Leave>", on_leave_button)
+    def create_widgets(self):
+        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
+        center_frame.pack(pady=50, padx=(400, 0))
 
-    stock_in_btn = tk.Button(root, text="Stock In", command=open_stock_in, **button_style)  # Added correct command
-    stock_in_btn.pack(pady=10)
-    stock_in_btn.bind("<Enter>", on_enter_button)
-    stock_in_btn.bind("<Leave>", on_leave_button)
+        cart_label = tk.Label(center_frame, text="Shopping Cart", font=("Helvetica", 16, "bold"), fg="#2F4F4F", bg="#E6F7FF")
+        cart_label.pack(pady=20)
 
-    vendor_login_btn = tk.Button(root, text="Vendor Login", command=open_vendor_login, **button_style)  # Vendor Login stays as is
-    vendor_login_btn.pack(pady=10)
-    vendor_login_btn.bind("<Enter>", on_enter_button)
-    vendor_login_btn.bind("<Leave>", on_leave_button)
+        # Placeholder for cart items
+        cart_items_label = tk.Label(center_frame, text="No items in the cart", bg="#E6F7FF", fg="#2F4F4F")
+        cart_items_label.pack(pady=20)
 
-    new_product_btn = tk.Button(root, text="New Product", command=open_new_product, **button_style)  # Added correct command
-    new_product_btn.pack(pady=10)
-    new_product_btn.bind("<Enter>", on_enter_button)
-    new_product_btn.bind("<Leave>", on_leave_button)
+        checkout_btn = tk.Button(center_frame, text="Checkout", bg="#AEB8E1", fg="#2A2D34")
+        checkout_btn.pack(pady=20)
 
-    root.mainloop()
+# Main Application Class
+class StoreManagementApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Store Management System")
+        self.geometry("1100x670")
+        self.configure(bg="#E6F7FF")  # Light blue background
 
-# Stock In Page Layout
-def stock_in_page():
-    stock_in_window = tk.Toplevel()  # Create a new window
-    stock_in_window.title("Stock In")
-    stock_in_window.geometry("400x300")
-    stock_in_window.configure(bg="#f0f0f5")
+        header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
+        header_frame.pack(pady=0, fill='x')
 
-    # Labels and Entry fields with the new bold font
-    product_label = tk.Label(stock_in_window, text="Product Name", font=("Helvetica", 12, "bold"), fg="#5D3FD3", bg="#f0f0f5")
-    product_label.pack(pady=5)
-    product_entry = tk.Entry(stock_in_window)
-    product_entry.pack()
+        original_image = Image.open("F:/Python Code-Lab/Store-Management-System-Project/logo.png")  # Correct the path format
+        logo_image = original_image.resize((80, 80), Image.LANCZOS)
+        logo_image = ImageTk.PhotoImage(logo_image)
 
-    quantity_label = tk.Label(stock_in_window, text="Quantity", font=("Helvetica", 12, "bold"), fg="#5D3FD3", bg="#f0f0f5")
-    quantity_label.pack(pady=5)
-    quantity_entry = tk.Entry(stock_in_window)
-    quantity_entry.pack()
+        logo_label = tk.Label(header_frame, image=logo_image, bg="#B0C4DE")  # Match the frame color
+        logo_label.image = logo_image
+        logo_label.grid(row=0, column=0, padx=(5, 10), pady=10)
 
-    price_label = tk.Label(stock_in_window, text="Price", font=("Helvetica", 12, "bold"), fg="#5D3FD3", bg="#f0f0f5")
-    price_label.pack(pady=5)
-    price_entry = tk.Entry(stock_in_window)
-    price_entry.pack()
+        title = tk.Label(header_frame, text="Store Management System", font=("Helvetica", 20, "bold"), fg="#2A2D34", bg="#B0C4DE")
+        title.grid(row=0, column=1, sticky='w')
 
-    # Submit Button
-    submit_btn = tk.Button(stock_in_window, text="Submit", font=("Helvetica", 12, "bold"), bg="#D8BFD8", fg="#5D3FD3", width=15, height=1, bd=2, relief="solid")
-    submit_btn.pack(pady=20)
+        self.dashboard_page = DashboardPage(self)
+        self.new_product_page = NewProductPage(self)
+        self.stock_in_page = StockInPage(self)
+        self.cart_page = CartPage(self)  # Create the Cart page
 
-    submit_btn.bind("<Enter>", on_enter_button)
-    submit_btn.bind("<Leave>", on_leave_button)
+        sidebar_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
+        sidebar_frame.pack(side=tk.LEFT, fill='y')
 
+        button_style = {
+            "font": ("Helvetica", 10, "bold"),
+            "bg": "#AEB8E1",  # Soft purple background
+            "fg": "#2A2D34",  # Dark blue text
+            "width": 15,
+            "height": 5,
+            "bd": 2,
+            "relief": "solid"
+        }
+
+        # Cart button first, followed by Dashboard button
+        cart_btn = tk.Button(sidebar_frame, text="Cart", command=self.show_cart, **button_style)
+        cart_btn.pack(pady=10)
+
+        dashboard_btn = tk.Button(sidebar_frame, text="Dashboard", command=self.show_dashboard, **button_style)
+        dashboard_btn.pack(pady=10)
+
+        stock_in_btn = tk.Button(sidebar_frame, text="Stock In", command=self.show_stock_in, **button_style)
+        stock_in_btn.pack(pady=10)
+
+        vendor_login_btn = tk.Button(sidebar_frame, text="Vendor Login", command=self.show_vendor_login, **button_style)
+        vendor_login_btn.pack(pady=10)
+
+        new_product_btn = tk.Button(sidebar_frame, text="New Product", command=self.show_new_product, **button_style)
+        new_product_btn.pack(pady=10)
+
+        self.content_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
+        self.content_frame.pack(side=tk.RIGHT, fill='both', expand=True)
+
+        # Initially show the Cart page
+        self.cart_page.pack(fill='both', expand=True)
+        self.dashboard_page.pack_forget()
+        self.new_product_page.pack_forget()
+        self.stock_in_page.pack_forget()
+
+    def show_frame(self, frame):
+        self.dashboard_page.pack_forget()
+        self.new_product_page.pack_forget()
+        self.stock_in_page.pack_forget()
+        self.cart_page.pack_forget()
+
+        frame.pack(fill='both', expand=True)
+
+    def show_dashboard(self):
+        self.show_frame(self.dashboard_page)
+
+    def show_stock_in(self):
+        self.show_frame(self.stock_in_page)
+
+    def show_new_product(self):
+        self.show_frame(self.new_product_page)
+
+    def show_cart(self):
+        self.show_frame(self.cart_page)
+
+    def show_vendor_login(self):
+        messagebox.showinfo("Vendor Login", "Navigating to Vendor Login")
+
+# Run the application
 if __name__ == "__main__":
-    main_page()
+    app = StoreManagementApp()
+    app.mainloop()
