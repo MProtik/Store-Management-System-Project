@@ -2,9 +2,11 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import cartpage  # Import CartPage from the cart_page module
+import Product_List
+from Product_List import ProductsPage  # Import ProductsPage from the previous module
 
-# Dashboard Page Frame
-class DashboardPage(tk.Frame):
+# Main Frame
+class MainFrame(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.create_widgets()
@@ -89,7 +91,7 @@ class StoreManagementApp(tk.Tk):
         super().__init__()
         self.title("Store Management System")
         self.geometry("1100x670")
-        self.configure(bg="#E6F7FF")  # Light blue background
+        self.configure(bg="#E6F7F7")  # Light blue background
 
         header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
         header_frame.pack(pady=0, fill='x')
@@ -105,10 +107,11 @@ class StoreManagementApp(tk.Tk):
         title = tk.Label(header_frame, text="Store Management System", font=("Helvetica", 20, "bold"), fg="#2A2D34", bg="#B0C4DE")
         title.grid(row=0, column=1, sticky='w')
 
-        self.dashboard_page = DashboardPage(self)
+        self.main_frame = MainFrame(self)
         self.new_product_page = NewProductPage(self)
         self.stock_in_page = StockInPage(self)
         self.cart_page = cartpage.CartPage(self)  # Use the CartPage imported from cart_page.py
+        self.products_page = ProductsPage(self)  # Create instance of ProductsPage
 
         sidebar_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
         sidebar_frame.pack(side=tk.LEFT, fill='y')
@@ -123,12 +126,12 @@ class StoreManagementApp(tk.Tk):
             "relief": "solid"
         }
 
-        # Cart button first, followed by Dashboard button
+        # Cart button first, followed by Products button
         cart_btn = tk.Button(sidebar_frame, text="Cart", command=self.show_cart, **button_style)
         cart_btn.pack(pady=10)
 
-        dashboard_btn = tk.Button(sidebar_frame, text="Dashboard", command=self.show_dashboard, **button_style)
-        dashboard_btn.pack(pady=10)
+        products_btn = tk.Button(sidebar_frame, text="Products", command=self.show_products, **button_style)
+        products_btn.pack(pady=10)
 
         stock_in_btn = tk.Button(sidebar_frame, text="Stock In", command=self.show_stock_in, **button_style)
         stock_in_btn.pack(pady=10)
@@ -144,20 +147,22 @@ class StoreManagementApp(tk.Tk):
 
         # Initially show the Cart page
         self.cart_page.pack(fill='both', expand=True)
-        self.dashboard_page.pack_forget()
+        self.main_frame.pack_forget()
         self.new_product_page.pack_forget()
         self.stock_in_page.pack_forget()
+        self.products_page.pack_forget()  # Hide Products page initially
 
     def show_frame(self, frame):
-        self.dashboard_page.pack_forget()
+        self.main_frame.pack_forget()
         self.new_product_page.pack_forget()
         self.stock_in_page.pack_forget()
         self.cart_page.pack_forget()
+        self.products_page.pack_forget()  # Hide Products page when showing other frames
 
         frame.pack(fill='both', expand=True)
 
-    def show_dashboard(self):
-        self.show_frame(self.dashboard_page)
+    def show_products(self):
+        self.show_frame(self.products_page)  # Show the products page
 
     def show_stock_in(self):
         self.show_frame(self.stock_in_page)
