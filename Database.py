@@ -12,10 +12,14 @@ query = pd.read_sql_query(f"select PRODUCT_NAME from hardwarestore where CATEGOR
 
 def product_list(category):
     return list(set(df[df["CATEGORY_NAME"] == category]["PRODUCT_NAME"]))
-products = dict(df[["CATEGORY_NAME", "PRODUCT_NAME"]])
+
+def product_price(product):
+    return df[df["PRODUCT_NAME"] == product]["LIST_PRICE"].max()
+
+
 
 
 if __name__ == "__main__":
     print(category)
-    print(products)
+    print(prize('Asus Z10PE-D8 WS'))
 

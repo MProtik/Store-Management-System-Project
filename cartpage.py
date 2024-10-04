@@ -5,10 +5,11 @@ import Database
 class CartPage(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.search_results = []  # Variable to store search results
         self.selected_category = ""
+        self.selected_product = ""
         self.products = []
         self.create_widgets()
+        self.price = 0
 
     def create_widgets(self):
         center_frame = tk.Frame(self, bg="#E6F7F7")  # Light blue background
@@ -23,9 +24,8 @@ class CartPage(tk.Frame):
         self.category_combobox = ttk.Combobox(center_frame, values=Database.category)
         self.category_combobox.pack(pady=5)
 
-        # Search Button
-        search_btn = tk.Button(center_frame, text="Search", command=self.store_selected_category, bg="#AEB8E1", fg="#2A2D34")
-        search_btn.pack(pady=10)
+        # Bind the combobox selection to an event handler
+        self.category_combobox.bind("<<ComboboxSelected>>", self.store_selected_category)
 
         # Dropdown for Product List
         product_label = tk.Label(center_frame, text="Select Product", bg="#E6F7F7", fg="#2F4F4F")
@@ -34,6 +34,9 @@ class CartPage(tk.Frame):
         # Initialize product_combobox without any values initially
         self.product_combobox = ttk.Combobox(center_frame)
         self.product_combobox.pack(pady=5)
+
+        # Bind the product selection to get the price
+        self.product_combobox.bind("<<ComboboxSelected>>", self.product_price)
 
         # Price Label
         self.price_label = tk.Label(center_frame, text="Price: $0", bg="#E6F7F7", fg="#2F4F4F")
@@ -69,7 +72,7 @@ class CartPage(tk.Frame):
         generate_bill_btn = tk.Button(center_frame, text="Generate Bill", command=self.generate_bill, bg="#AEB8E1", fg="#2A2D34")
         generate_bill_btn.pack(pady=10)
 
-    def store_selected_category(self):
+    def store_selected_category(self, event):
         # Store the selected category and update products
         self.selected_category = self.category_combobox.get()
         self.products = Database.product_list(self.selected_category)
@@ -77,29 +80,30 @@ class CartPage(tk.Frame):
         # Update the product_combobox with the retrieved products
         self.product_combobox['values'] = self.products
         self.product_combobox.set("")  # Clear the selected product
+        self.price_label.config(text="Price: $0")  # Reset price label
+
+    def product_price(self, event):
+        # Get the selected product
+        self.selected_product = self.product_combobox.get()
+        
+        # Fetch the price using Database.product_price()
+        self.price = Database.product_price(self.selected_product)
+        
+        # Update the price label
+        self.price_label.config(text=f"Price: ${self.price:.2f}")
 
     def add_to_cart(self):
         product = self.product_combobox.get()
         quantity = int(self.quantity_entry.get())
         discount = float(self.discount_entry.get())
-        price = self.get_price(product)
+        price = Database.product_price(product)  # Get the price using Database
         discounted_price = price - (price * (discount / 100))
-        total_price = discounted_price * quantity
-        messagebox.showinfo("Cart", f"{product} added to cart. Total: ${total_price:.2f}")
-
-    def get_price(self, product):
-        # Simulate price fetching (replace with actual price fetching logic)
-        prices = {
-            "Laptop": 1000, "Phone": 500, "Tablet": 300,
-            "Rice": 20, "Flour": 15, "Oil": 10,
-            "Shirt": 30, "Jeans": 40, "Jacket": 60,
-            "Watch": 100, "Belt": 20, "Sunglasses": 50
-        }
-        return prices.get(product, 0)
+        self.price = discounted_price * quantity
+        messagebox.showinfo("Cart", f"{product} added to cart. Total: ${self.price:.2f}")
 
     def calculate_change(self):
         total_amount = float(self.given_amount_entry.get())  # Replace this with the actual total bill amount
-        change = total_amount - 500  # Replace 500 with the actual total bill amount
+        change = total_amount - self.price  # Replace 500 with the actual total bill amount
         messagebox.showinfo("Change", f"Change: ${change:.2f}")
 
     def generate_bill(self):

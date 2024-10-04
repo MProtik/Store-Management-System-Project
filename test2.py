@@ -1,35 +1,27 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
-class ShoppingCartPage(tk.Frame):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.create_widgets()
+class FruitSelector(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Fruit Selector")
+        self.geometry("300x200")
 
-    def create_widgets(self):
-        center_frame = tk.Frame(self, bg="#E6F7F7")  # Light blue background
-        center_frame.pack(pady=10, padx=(100, 0))
+        # Label
+        label = tk.Label(self, text="Select a fruit:")
+        label.pack(pady=10)
 
-        # Dropdown for Category Selection
-        category_label = tk.Label(center_frame, text="Select Category", bg="#E6F7F7", fg="#2F4F4F")
-        category_label.pack(pady=5)
-        
-        # Create a Combobox for category selection
-        self.category_combobox = ttk.Combobox(center_frame, values=["Fruits", "Vegetables", "Dairy"])
-        self.category_combobox.pack(pady=5)
+        # Dropdown for Fruit Selection
+        self.fruit_combobox = ttk.Combobox(self, values=["Apple", "Banana", "Cherry", "Date", "Fig", "Grape"])
+        self.fruit_combobox.pack(pady=10)
 
-        # Button to confirm selection
-        select_btn = tk.Button(center_frame, text="Select", command=self.print_selected_category)
-        select_btn.pack(pady=10)
+        # Bind the selection event
+        self.fruit_combobox.bind("<<ComboboxSelected>>", self.on_combobox_selected)
 
-    def print_selected_category(self):
-        # Retrieve the selected category and print it
-        selected_category = self.category_combobox.get()
-        print(f"Selected Category: {selected_category}")
+    def on_combobox_selected(self, event):
+        selected_fruit = self.fruit_combobox.get()  # Get the selected fruit directly
+        print(selected_fruit)  # Print the selected fruit to the console
 
-# Example usage in the main application
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = ShoppingCartPage(root)
-    app.pack()
-    root.mainloop()
+    app = FruitSelector()
+    app.mainloop()
