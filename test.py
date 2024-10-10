@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import cartpage  # Import CartPage from the cart_page module
 import Product_List
 from Product_List import ProductsPage  # Import ProductsPage from the previous module
+import StockinPage  # Import StockInPage from the stockinpage module
 
 # Main Frame
 class MainFrame(tk.Frame):
@@ -53,45 +54,14 @@ class NewProductPage(tk.Frame):
                             bg="#AEB8E1", fg="#2A2D34")
         add_btn.pack(pady=20)
 
-# Stock In Page Frame
-class StockInPage(tk.Frame):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.create_widgets()
-
-    def create_widgets(self):
-        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
-        center_frame.pack(pady=50, padx=(400, 0))
-
-        product_label = tk.Label(center_frame, text="Product Name", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        product_label.pack(pady=5)
-
-        product_entry = tk.Entry(center_frame)
-        product_entry.pack(pady=5)
-
-        quantity_label = tk.Label(center_frame, text="Quantity", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        quantity_label.pack(pady=5)
-
-        quantity_entry = tk.Entry(center_frame)
-        quantity_entry.pack(pady=5)
-
-        price_label = tk.Label(center_frame, text="Price", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        price_label.pack(pady=5)
-
-        price_entry = tk.Entry(center_frame)
-        price_entry.pack(pady=5)
-
-        submit_btn = tk.Button(center_frame, text="Submit", font=("Helvetica", 12, "bold"), bg="#AEB8E1", 
-                                fg="#2A2D34", width=15, height=1, bd=2, relief="solid")
-        submit_btn.pack(pady=20)
-
 # Main Application Class
 class StoreManagementApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Store Management System")
-        self.geometry("1100x670")
+        self.geometry("1300x680")
         self.configure(bg="#E6F7F7")  # Light blue background
+        self.resizable(width=False, height=False)
 
         header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
         header_frame.pack(pady=0, fill='x')
@@ -109,7 +79,7 @@ class StoreManagementApp(tk.Tk):
 
         self.main_frame = MainFrame(self)
         self.new_product_page = NewProductPage(self)
-        self.stock_in_page = StockInPage(self)
+        self.stock_in_page = StockinPage.StockInPage(self)  # Use the StockInPage imported from stockinpage.py
         self.cart_page = cartpage.CartPage(self)  # Use the CartPage imported from cart_page.py
         self.products_page = ProductsPage(self)  # Create instance of ProductsPage
 
@@ -133,7 +103,7 @@ class StoreManagementApp(tk.Tk):
         products_btn = tk.Button(sidebar_frame, text="Products", command=self.show_products, **button_style)
         products_btn.pack(pady=10)
 
-        stock_in_btn = tk.Button(sidebar_frame, text="Stock In", command=self.show_stock_in, **button_style)
+        stock_in_btn = tk.Button(sidebar_frame, text="New Stock In", command=self.show_stock_in, **button_style)
         stock_in_btn.pack(pady=10)
 
         vendor_login_btn = tk.Button(sidebar_frame, text="Vendor Login", command=self.show_vendor_login, **button_style)

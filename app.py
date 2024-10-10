@@ -1,9 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+import cartpage  # Import CartPage from the cart_page module
+import Product_List
+from Product_List import ProductsPage  # Import ProductsPage from the previous module
+import StockinPage  # Import StockInPage from the stockinpage module
 
-# Dashboard Page Frame
-class DashboardPage(tk.Frame):
+# Main Frame
+class MainFrame(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.create_widgets()
@@ -50,65 +54,14 @@ class NewProductPage(tk.Frame):
                             bg="#AEB8E1", fg="#2A2D34")
         add_btn.pack(pady=20)
 
-# Stock In Page Frame
-class StockInPage(tk.Frame):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.create_widgets()
-
-    def create_widgets(self):
-        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
-        center_frame.pack(pady=50, padx=(400, 0))
-
-        product_label = tk.Label(center_frame, text="Product Name", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        product_label.pack(pady=5)
-
-        product_entry = tk.Entry(center_frame)
-        product_entry.pack(pady=5)
-
-        quantity_label = tk.Label(center_frame, text="Quantity", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        quantity_label.pack(pady=5)
-
-        quantity_entry = tk.Entry(center_frame)
-        quantity_entry.pack(pady=5)
-
-        price_label = tk.Label(center_frame, text="Price", font=("Helvetica", 12, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        price_label.pack(pady=5)
-
-        price_entry = tk.Entry(center_frame)
-        price_entry.pack(pady=5)
-
-        submit_btn = tk.Button(center_frame, text="Submit", font=("Helvetica", 12, "bold"), bg="#AEB8E1", 
-                                fg="#2A2D34", width=15, height=1, bd=2, relief="solid")
-        submit_btn.pack(pady=20)
-
-# Cart Page Frame
-class CartPage(tk.Frame):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.create_widgets()
-
-    def create_widgets(self):
-        center_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
-        center_frame.pack(pady=50, padx=(400, 0))
-
-        cart_label = tk.Label(center_frame, text="Shopping Cart", font=("Helvetica", 16, "bold"), fg="#2F4F4F", bg="#E6F7FF")
-        cart_label.pack(pady=20)
-
-        # Placeholder for cart items
-        cart_items_label = tk.Label(center_frame, text="No items in the cart", bg="#E6F7FF", fg="#2F4F4F")
-        cart_items_label.pack(pady=20)
-
-        checkout_btn = tk.Button(center_frame, text="Checkout", bg="#AEB8E1", fg="#2A2D34")
-        checkout_btn.pack(pady=20)
-
 # Main Application Class
 class StoreManagementApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Store Management System")
-        self.geometry("1100x670")
-        self.configure(bg="#E6F7FF")  # Light blue background
+        self.geometry("1300x680")
+        self.configure(bg="#E6F7F7")  # Light blue background
+        self.resizable(width=False, height=False)
 
         header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
         header_frame.pack(pady=0, fill='x')
@@ -124,10 +77,11 @@ class StoreManagementApp(tk.Tk):
         title = tk.Label(header_frame, text="Store Management System", font=("Helvetica", 20, "bold"), fg="#2A2D34", bg="#B0C4DE")
         title.grid(row=0, column=1, sticky='w')
 
-        self.dashboard_page = DashboardPage(self)
+        self.main_frame = MainFrame(self)
         self.new_product_page = NewProductPage(self)
-        self.stock_in_page = StockInPage(self)
-        self.cart_page = CartPage(self)  # Create the Cart page
+        self.stock_in_page = StockinPage.StockInPage(self)  # Use the StockInPage imported from stockinpage.py
+        self.cart_page = cartpage.CartPage(self)  # Use the CartPage imported from cart_page.py
+        self.products_page = ProductsPage(self)  # Create instance of ProductsPage
 
         sidebar_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
         sidebar_frame.pack(side=tk.LEFT, fill='y')
@@ -142,12 +96,12 @@ class StoreManagementApp(tk.Tk):
             "relief": "solid"
         }
 
-        # Cart button first, followed by Dashboard button
+        # Cart button first, followed by Products button
         cart_btn = tk.Button(sidebar_frame, text="Cart", command=self.show_cart, **button_style)
         cart_btn.pack(pady=10)
 
-        dashboard_btn = tk.Button(sidebar_frame, text="Dashboard", command=self.show_dashboard, **button_style)
-        dashboard_btn.pack(pady=10)
+        products_btn = tk.Button(sidebar_frame, text="Products", command=self.show_products, **button_style)
+        products_btn.pack(pady=10)
 
         stock_in_btn = tk.Button(sidebar_frame, text="Stock In", command=self.show_stock_in, **button_style)
         stock_in_btn.pack(pady=10)
@@ -163,20 +117,22 @@ class StoreManagementApp(tk.Tk):
 
         # Initially show the Cart page
         self.cart_page.pack(fill='both', expand=True)
-        self.dashboard_page.pack_forget()
+        self.main_frame.pack_forget()
         self.new_product_page.pack_forget()
         self.stock_in_page.pack_forget()
+        self.products_page.pack_forget()  # Hide Products page initially
 
     def show_frame(self, frame):
-        self.dashboard_page.pack_forget()
+        self.main_frame.pack_forget()
         self.new_product_page.pack_forget()
         self.stock_in_page.pack_forget()
         self.cart_page.pack_forget()
+        self.products_page.pack_forget()  # Hide Products page when showing other frames
 
         frame.pack(fill='both', expand=True)
 
-    def show_dashboard(self):
-        self.show_frame(self.dashboard_page)
+    def show_products(self):
+        self.show_frame(self.products_page)  # Show the products page
 
     def show_stock_in(self):
         self.show_frame(self.stock_in_page)
@@ -188,9 +144,9 @@ class StoreManagementApp(tk.Tk):
         self.show_frame(self.cart_page)
 
     def show_vendor_login(self):
-        messagebox.showinfo("Vendor Login", "Navigating to Vendor Login")
+        pass  # Placeholder for Vendor Login logic
 
-# Run the application
+# Main Loop
 if __name__ == "__main__":
     app = StoreManagementApp()
     app.mainloop()

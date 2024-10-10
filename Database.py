@@ -1,28 +1,205 @@
 import pandas as pd
 import sqlite3
-import cartpage
 
-conn = sqlite3.connect('database.db', timeout=10)  # Example with a timeout
+conn = sqlite3.connect('storedatabase.db', timeout=10)  # Example with a timeout
 conn.execute("PRAGMA busy_timeout = 3000")  # 3 seconds
 
 df = pd.read_sql_query("select * from hardwarestore", conn)
-
+data = pd.read_sql_query("select WAREHOUSE_NAME, WAREHOUSE_ID from hardwarestore;", conn).drop_duplicates()
 category = list(set(df["CATEGORY_NAME"]))
 
 query = pd.read_sql_query(f"select PRODUCT_NAME from hardwarestore where CATEGORY_NAME = '{category[2]}';", conn) 
 
 def product_list(category):
+    df = whole_database()
     return list(set(df[df["CATEGORY_NAME"] == category]["PRODUCT_NAME"]))
 
 def product_price(product):
-    return float(df[df["PRODUCT_NAME"] == product]["LIST_PRICE"])
+    df = whole_database()
+    return float(df[df["PRODUCT_NAME"] == product]["LIST_PRICE"].iloc[0])
 
-Total_stocks = df["STOCKS"].sum()
+def warehouse_list():
+    df = whole_database()
+    return list(set(df["WAREHOUSE_NAME"]))
 
-conn.close()
+def StockAmount(name):
+    df = whole_database()
+    num = int(df[df["PRODUCT_NAME"] == name]["STOCKS"].iloc[0])
+    return num
+
+def whole_database():
+    conn = sqlite3.connect('storedatabase.db', timeout=10)  # Example with a timeout
+    conn.execute("PRAGMA busy_timeout = 3000")
+    cursor = conn.cursor()
+    database = pd.read_sql_query("select * from hardwarestore ORDER BY PRODUCT_NAME ASC", conn)
+    conn.close()
+    return database
+
+def whole_customerstable():
+    conn = sqlite3.connect('storedatabase.db', timeout=10)  # Example with a timeout
+    conn.execute("PRAGMA busy_timeout = 3000")
+    cursor = conn.cursor()
+    database = pd.read_sql_query("select * from customerstable;", conn)
+    conn.close()
+    return database
+
+def FilteredByProductID(ID):
+    df = whole_database()
+    result = df[df["PRODUCT_ID"] == int(ID)]
+    if len(result) != 0:
+        return result
+    elif len(result) == 0:
+        return f'There is no Product with {ID} ID'
+
+
+def StockinDatabase(total_stock, value) -> None:
+    try:
+        conn = sqlite3.connect('storedatabase.db', timeout=10)  # Example with a timeout
+        conn.execute("PRAGMA busy_timeout = 3000")
+        cursor = conn.cursor()
+        if value.isdigit():
+            conn.execute(f"UPDATE hardwarestore SET STOCKS = {total_stock} WHERE PRODUCT_ID = {value}")
+        else:
+            conn.execute(f"UPDATE hardwarestore SET STOCKS = {total_stock} WHERE PRODUCT_NAME = '{value}'")
+        conn.commit()
+    except sqlite3.Error as e:
+        # Handle any error here
+        print(f"An error occurred: {e}")
+    finally:
+        if conn:
+            conn.close()
+
+Total_stocks = whole_database()["STOCKS"].sum()
+
+
+
+def warehouselist():
+    data = pd.read_sql_query("select WAREHOUSE_NAME from hardwarestore;", conn).drop_duplicates()
+
+    return list(data)
+
+def categories():
+    data = pd.read_sql_query("select CATEGORY_NAME from hardwarestore;", conn).drop_duplicates()
+    return list(data["CATEGORY_NAME"])
+
+
+
+#Database.update_product(product_id, category, product_name, description, standard_cost, listing_cost, stocks, warehouse)
+
+import time
+
+def update_product(category, product_name, description, standard_cost, list_price, stocks, warehouse):
+    conn = None
+    try:
+        # Connect to the SQLite database with a timeout
+        conn = sqlite3.connect('storedatabase.db', timeout=10)
+        conn.execute("PRAGMA busy_timeout = 3000")
+        cursor = conn.cursor()
+
+        # SQL Insert query with placeholders
+        insert_query = '''
+            INSERT INTO hardwarestore (CATEGORY_NAME, PRODUCT_ID, PRODUCT_NAME, DESCRIPTION, STANDARD_COST, LIST_PRICE, STOCKS, WAREHOUSE_NAME)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        '''
+
+        # Handle optional customer name and phone number
+        description = description if description else ""
+
+        product_id = len(whole_database()) + 1
+
+        # Execute the query with the provided data as a tuple
+        while True:
+            try:
+                cursor.execute(insert_query, (category, product_id, product_name, description, standard_cost, list_price, stocks, warehouse))
+            except sqlite3.IntegrityError as e:
+                product_id += 1
+                continue
+            finally:
+                conn.commit()
+                break
+
+        # Commit the changes
+        
+
+        return f"Customer with ID: {product_id} inserted successfully."
+
+
+    except sqlite3.Error as e:
+        return f"Error occurred: {e}"
+
+    finally:
+        # Close the database connection
+        if conn:
+            conn.close()
+
+def insert_customerstable(Customer_id, customer_name, phone_number, Product_list, Total, Invoice, Sold_date):
+    conn = None
+    try:
+        # Connect to the SQLite database with a timeout
+        conn = sqlite3.connect('storedatabase.db', timeout=10)
+        conn.execute("PRAGMA busy_timeout = 3000")
+        cursor = conn.cursor()
+
+        # SQL Insert query with placeholders
+        insert_query = '''
+            INSERT INTO customerstable (CustomerID, customer_name, phone_number, Product_list, Total, Invoice, Sold_date)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        '''
+
+        # Handle optional customer name and phone number
+        customer_name = customer_name if customer_name else ""
+        phone_number = phone_number if phone_number else ""
+
+        # Execute the query with the provided data as a tuple
+        cursor.execute(insert_query, (Customer_id, customer_name, phone_number, Product_list, Total, Invoice, Sold_date))
+
+        # Commit the changes
+        conn.commit()
+
+        print(f"Customer with ID: {Customer_id} inserted successfully.")
+
+    except sqlite3.Error as e:
+        print(f"Error occurred: {e}")
+
+    finally:
+        # Close the database connection
+        if conn:
+            conn.close()
+
+
+def get_all_customers():
+    return whole_customerstable()["CustomerID"]
+
+import sqlite3
+
+# def product_sold(product_name, qty):
+#     stocks = whole_database()
+#     num = int(stocks[stocks["PRODUCT_NAME"] == product_name]['STOCKS'].iloc[0])
+    
+#     if num == 0:
+#         return 0
+#     else:
+#         conn = sqlite3.connect('storedatabase.db')
+#         cursor = conn.cursor()
+
+#         new_stock = num - qty
+
+#         cursor.execute("UPDATE hardwarestore SET STOCKS = ? WHERE PRODUCT_NAME = ?", (new_stock, product_name))
+        
+#         conn.commit()
+
+#         conn.close()
+
+#         return num
+
+
+# conn.close()
 
 
 if __name__ == "__main__":
-    print(category)
+    print(categories())
     print(product_price('Asus Z10PE-D8 WS'))
+    print(FilteredByProductID(2168970))
+    print(StockAmount('Asus Z10PE-D8 WS'))
+    
 
