@@ -79,8 +79,9 @@ def warehouselist():
     return list(data)
 
 def categories():
-    data = pd.read_sql_query("select CATEGORY_NAME from hardwarestore;", conn).drop_duplicates()
-    return list(data["CATEGORY_NAME"])
+    data = whole_database()["CATEGORY_NAME"]
+    # data = pd.read_sql_query("select CATEGORY_NAME from hardwarestore;", conn).drop_duplicates()
+    return sorted(list(data.drop_duplicates()))
 
 
 
@@ -102,27 +103,23 @@ def update_product(category, product_name, description, standard_cost, list_pric
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         '''
 
-        # Handle optional customer name and phone number
+        # Handle optional description
         description = description if description else ""
 
+        # Generate a new product ID
         product_id = len(whole_database()) + 1
 
-        # Execute the query with the provided data as a tuple
+        # Try inserting the product until successful
         while True:
             try:
                 cursor.execute(insert_query, (category, product_id, product_name, description, standard_cost, list_price, stocks, warehouse))
-            except sqlite3.IntegrityError as e:
-                product_id += 1
-                continue
-            finally:
                 conn.commit()
                 break
+            except sqlite3.IntegrityError:
+                # Increment product ID if conflict occurs
+                product_id += 1
 
-        # Commit the changes
-        
-
-        return f"Customer with ID: {product_id} inserted successfully."
-
+        return f"Product with ID: {product_id} inserted successfully."
 
     except sqlite3.Error as e:
         return f"Error occurred: {e}"
@@ -132,7 +129,7 @@ def update_product(category, product_name, description, standard_cost, list_pric
         if conn:
             conn.close()
 
-def insert_customerstable(Customer_id, customer_name, phone_number, Product_list, Total, Invoice, Sold_date):
+def insert_customerstable(customer_name, phone_number, Product_list, Total, Invoice, Sold_date):
     conn = None
     try:
         # Connect to the SQLite database with a timeout
@@ -149,22 +146,27 @@ def insert_customerstable(Customer_id, customer_name, phone_number, Product_list
         # Handle optional customer name and phone number
         customer_name = customer_name if customer_name else ""
         phone_number = phone_number if phone_number else ""
+        
+        # Calculate CustomerID based on the existing customer records
+        Customer_id = len(whole_customerstable())
 
-        # Execute the query with the provided data as a tuple
-        cursor.execute(insert_query, (Customer_id, customer_name, phone_number, Product_list, Total, Invoice, Sold_date))
-
-        # Commit the changes
-        conn.commit()
-
-        print(f"Customer with ID: {Customer_id} inserted successfully.")
+        while True:
+            try:
+                # Execute the insert query
+                cursor.execute(insert_query, (Customer_id, customer_name, phone_number, Product_list, Total, Invoice, Sold_date))
+                conn.commit()
+                return f"Product with ID: {Customer_id} inserted successfully."
+            except sqlite3.IntegrityError:
+                # Increment CustomerID if there's a conflict (e.g., duplicate)
+                Customer_id += 1
 
     except sqlite3.Error as e:
         print(f"Error occurred: {e}")
-
     finally:
         # Close the database connection
         if conn:
             conn.close()
+
 
 
 def get_all_customers():
@@ -172,28 +174,28 @@ def get_all_customers():
 
 import sqlite3
 
-# def product_sold(product_name, qty):
-#     stocks = whole_database()
-#     num = int(stocks[stocks["PRODUCT_NAME"] == product_name]['STOCKS'].iloc[0])
+def product_sold(product_name, qty):
+    stocks = whole_database()
+    num = int(stocks[stocks["PRODUCT_NAME"] == product_name]['STOCKS'].iloc[0])
     
-#     if num == 0:
-#         return 0
-#     else:
-#         conn = sqlite3.connect('storedatabase.db')
-#         cursor = conn.cursor()
+    if num == 0:
+        return 0
+    else:
+        conn = sqlite3.connect('storedatabase.db')
+        cursor = conn.cursor()
 
-#         new_stock = num - qty
+        new_stock = num - qty
 
-#         cursor.execute("UPDATE hardwarestore SET STOCKS = ? WHERE PRODUCT_NAME = ?", (new_stock, product_name))
+        cursor.execute("UPDATE hardwarestore SET STOCKS = ? WHERE PRODUCT_NAME = ?", (new_stock, product_name))
         
-#         conn.commit()
+        conn.commit()
 
-#         conn.close()
+        conn.close()
 
-#         return num
+        return num
 
 
-# conn.close()
+conn.close()
 
 
 if __name__ == "__main__":

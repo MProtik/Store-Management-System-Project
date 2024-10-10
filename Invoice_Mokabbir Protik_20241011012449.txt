@@ -1,0 +1,16 @@
+Customer Name: Mokabbir Protik
+Phone Number: 01911922242
+Date: 2024-10-11 01:24:49
+
+Product        Qty  Price     
+------------------------------
+Total               $3269.94  
+Intel Core i9-7900X1    $1029.99  
+Gigabyte X299 AORUS Gaming 31    $280.98   
+GBL Nothing    1    $754.00   
+Samsung MZ-V6E1T01    $449.99   
+Zotac ZT-P10810G-10P1    $754.98   
+------------------------------
+Total Amount: $3269.94
+Given Amount: 3500
+Change: 230.06

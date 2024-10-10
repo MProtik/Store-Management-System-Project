@@ -61,7 +61,7 @@ class StoreManagementApp(tk.Tk):
         self.title("Store Management System")
         self.geometry("1300x680")
         self.configure(bg="#E6F7F7")  # Light blue background
-        self.resizable(width=False, height=False)
+        #self.resizable(width=False, height=False)
 
         header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
         header_frame.pack(pady=0, fill='x')

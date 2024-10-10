@@ -61,7 +61,7 @@ class StoreManagementApp(tk.Tk):
         self.title("Store Management System")
         self.geometry("1300x680")
         self.configure(bg="#E6F7F7")  # Light blue background
-        self.resizable(width=False, height=False)
+        #self.resizable(width=False, height=False)
 
         header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
         header_frame.pack(pady=0, fill='x')
@@ -103,7 +103,7 @@ class StoreManagementApp(tk.Tk):
         products_btn = tk.Button(sidebar_frame, text="Products", command=self.show_products, **button_style)
         products_btn.pack(pady=10)
 
-        stock_in_btn = tk.Button(sidebar_frame, text="Stock In", command=self.show_stock_in, **button_style)
+        stock_in_btn = tk.Button(sidebar_frame, text="New Stock In", command=self.show_stock_in, **button_style)
         stock_in_btn.pack(pady=10)
 
         vendor_login_btn = tk.Button(sidebar_frame, text="Vendor Login", command=self.show_vendor_login, **button_style)
