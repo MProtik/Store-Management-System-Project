@@ -1,0 +1,55 @@
+
+2024-11-05 20:52:54,547 - INFO - Purchase: Mily mike purchased ASRock EP2C612 WS, Anker Soundcore Space Q30. Bill = 1308.49
+
+2024-11-05 20:55:12,739 - INFO - Purchase: SOMEONE purchased ASRock EP2C612 WS, Corsair Vengeance LPX. Bill = 1658.48
+
+2024-11-05 20:58:01,299 - INFO - Purchase: Lily markos purchased Intel Core i7-4770K, PNY VCQP5000-PB. Bill = 2814.1099999999997
+
+2024-11-05 21:16:59,177 - INFO - Purchase: Superman purchased Intel Xeon E5-2650, Asus Z10PE-D16 WS, Samsung MZ-75E500B/AM, MSI GeForce GTX 1080 TI ARMOR 11G OC. Bill = 2478.05
+
+2024-11-05 21:18:40,431 - WARNING - DATABASE UPDATE: Product name = AMD Cpu and Product id = 180 has been updated
+
+2024-11-06 21:02:34,160 - INFO - Stock In: Category: Phone Product Name: Iphone 15 Pro Max stocked in with 2 in Sydney warehouse
+
+2024-11-06 21:02:59,791 - INFO - Stock In: Category: Phone Product Name: Iphone 15 stocked in with 2 in Sydney warehouse
+
+2024-11-06 21:10:46,467 - WARNING - Deleted: Product Name = Iphone 15 Pro MaxProduct ID = 181 has been deleted
+
+2024-11-06 21:15:37,725 - WARNING - Deleted: Product Name = Intel DG43RK Product ID = 144 has been deleted.
+
+2024-11-06 21:59:44,110 - WARNING - Deleted: Product Name = Intel SSDPECME040T401 Product ID = 50 has been deleted from the software.
+
+2024-11-06 22:02:51,871 - WARNING - A stock of 1 is added to the Product Name = Iphone 15 Pro Max Product ID = 181.
+
+2024-11-08 19:02:18,270 - INFO - Stock In: Category: Phone Product Name: Iphone 15 plus stocked in with 10 in Beijing warehouse
+
+2024-11-13 20:48:11,549 - INFO - Stock In: Category: Phone Product Name: Iphone 14 Pro Max stocked in with 5 in Sydney warehouse
+
+2024-11-13 20:50:58,060 - INFO - Purchase: Tokyo purchased SanDisk SDSSDA-120G-G26. Bill = 1199.8
+
+2024-11-13 20:55:06,705 - WARNING - Deleted: Product Name = AMD Opteron 6378 Product ID = 136 has been deleted from the software.
+
+2024-11-13 21:02:37,130 - WARNING - Deleted: Product Name = ASRock E3C224D4M-16RE Product ID = 274 has been deleted from the software.
+
+2024-11-13 21:08:09,075 - WARNING - Edited: Product Name = AMD Redeon 6600Product ID = 186 has been Edited in the software.
+
+2024-11-13 21:11:40,713 - WARNING - Deleted: Product Name = GBL Product ID = 178 has been deleted from the software.
+
+2024-11-13 22:53:26,629 - WARNING - Edited: Product Name = Beats Product ID = 195 has been Edited in the software.
+
+2024-11-13 23:14:16,930 - INFO - Application started.
+2024-11-13 23:14:16,930 - INFO - Another log entry.
+2024-11-13 23:14:32,514 - INFO - Application started.
+2024-11-13 23:14:32,514 - INFO - Another log entry.
+2024-11-13 23:15:03,632 - WARNING - Edited: Product Name = Anker Soundcore Space Q30 Product ID = 192 has been Edited in the software.
+
+2024-11-13 23:15:41,672 - INFO - Application started.
+2024-11-13 23:15:41,672 - INFO - Another log entry.
+2024-11-14 01:46:49,596 - INFO - Application started.
+2024-11-14 01:46:49,596 - INFO - Another log entry.
+2024-11-14 02:02:00,040 - INFO - Application started.
+2024-11-14 02:02:00,040 - INFO - Another log entry.
+2024-11-14 02:03:34,033 - INFO - Application started.
+2024-11-14 02:03:34,033 - INFO - Another log entry.
+2024-11-14 02:14:07,184 - INFO - Application started.
+2024-11-14 02:14:07,184 - INFO - Another log entry.

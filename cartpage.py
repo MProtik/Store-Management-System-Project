@@ -2,8 +2,12 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import Database
 import datetime
+import invoice_fillup
+import app
 
 now = datetime.datetime.now()
+
+
 
 class CartPage(tk.Frame):
     def __init__(self, parent):
@@ -201,28 +205,44 @@ class CartPage(tk.Frame):
         #phone number
         phone_number = self.phone_number_entry.get() or ""
         bill_content += f"Phone Number: {phone_number}\n\n"
+        total = self.total_amount
         #Products
         l = []
         bill_content += "Products:\n"
+
+        data = {
+            "[Name]": name,
+            "[Phone]": str(phone_number),
+            '[total]': str(total),
+            '[date]':str(sold_date),
+            '[invoice id]': '',
+        }
+
+        i = 1
         for product, quantity, price in self.cart_items:
             bill_content += f"{product} - Quantity: {quantity}, Price: ${price:.2f}\n"
             l.append(product)
             Database.product_sold(product, quantity)
+            Database.insert_soldproduct(product, quantity, price, name, sold_date)
+            data[f"[Product{i}]"] = product
+            data[f"[amount{i}]"] = str(quantity)
+            data[f"[price{i}]"] = str(price)
+            i += 1
+            
         products = ', '.join(l)
 
-        total = self.total_amount
         bill_content += f"\nTotal Amount: ${total:.2f}\n"
         bill_content += self.given_amount_label.cget("text") + "\n"  # Get the label text for given amount
         bill_content += self.change_label.cget("text") + "\n"  # Get the label text for change
 
-        #def insert_customerstable(Customer_id, customer_name, phone_number, Product_list, Total, Invoice, Sold_date):
-        Database.insert_customerstable(name, phone_number, products, total, bill_content, sold_date)
         
+        Database.insert_customerstable(name, phone_number, products, total, bill_content, sold_date)
+        print(name, phone_number, products, total, bill_content, sold_date)
+        
+ 
+        invoice_fillup.fill_invoice(data)
 
-        # Print or save the bill as needed
-        print(bill_content)  # Placeholder for actual bill generation logic
-
-        # Reset the cart and fields
+        app.logger.info(f"Purchase: {name} purchased {products}. Bill = {total}\n")       
         self.reset_cart()
 
     def reset_cart(self):
