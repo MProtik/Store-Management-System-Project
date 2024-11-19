@@ -1,0 +1,83 @@
+('F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+ 'file\\build\\StoreManagementApp\\StoreManagementApp.pkg',
+ {'BINARY': True,
+  'DATA': True,
+  'EXECUTABLE': True,
+  'EXTENSION': True,
+  'PYMODULE': True,
+  'PYSOURCE': True,
+  'PYZ': False,
+  'SPLASH': True,
+  'SYMLINK': False},
+ [('pyi-contents-directory _internal', '', 'OPTION'),
+  ('PYZ-00.pyz',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+   'file\\build\\StoreManagementApp\\PYZ-00.pyz',
+   'PYZ'),
+  ('struct',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+   'file\\build\\StoreManagementApp\\localpycs\\struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+   'file\\build\\StoreManagementApp\\localpycs\\pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+   'file\\build\\StoreManagementApp\\localpycs\\pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+   'file\\build\\StoreManagementApp\\localpycs\\pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyimod04_pywin32',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App '
+   'file\\build\\StoreManagementApp\\localpycs\\pyimod04_pywin32.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
+   'PYSOURCE'),
+  ('pyi_rth_multiprocessing',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_multiprocessing.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgres',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgres.py',
+   'PYSOURCE'),
+  ('pyi_rth_setuptools',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_setuptools.py',
+   'PYSOURCE'),
+  ('pyi_rth_mplconfig',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_mplconfig.py',
+   'PYSOURCE'),
+  ('pyi_rth_traitlets',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\_pyinstaller_hooks_contrib\\rthooks\\pyi_rth_traitlets.py',
+   'PYSOURCE'),
+  ('pyi_rth__tkinter',
+   'C:\\Users\\Computer '
+   'Solution\\AppData\\Roaming\\Python\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth__tkinter.py',
+   'PYSOURCE'),
+  ('app',
+   'F:\\Python Code-Lab\\Store-Management-System-Project\\App file\\app.py',
+   'PYSOURCE')],
+ 'python312.dll',
+ True,
+ False,
+ False,
+ [],
+ None,
+ None,
+ None)

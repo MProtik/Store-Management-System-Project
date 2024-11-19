@@ -1,0 +1,83 @@
+
+2024-11-05 20:52:54,547 - INFO - Purchase: Mily mike purchased ASRock EP2C612 WS, Anker Soundcore Space Q30. Bill = 1308.49
+
+2024-11-05 20:55:12,739 - INFO - Purchase: SOMEONE purchased ASRock EP2C612 WS, Corsair Vengeance LPX. Bill = 1658.48
+
+2024-11-05 20:58:01,299 - INFO - Purchase: Lily markos purchased Intel Core i7-4770K, PNY VCQP5000-PB. Bill = 2814.1099999999997
+
+2024-11-05 21:16:59,177 - INFO - Purchase: Superman purchased Intel Xeon E5-2650, Asus Z10PE-D16 WS, Samsung MZ-75E500B/AM, MSI GeForce GTX 1080 TI ARMOR 11G OC. Bill = 2478.05
+
+2024-11-05 21:18:40,431 - WARNING - DATABASE UPDATE: Product name = AMD Cpu and Product id = 180 has been updated
+
+2024-11-06 21:02:34,160 - INFO - Stock In: Category: Phone Product Name: Iphone 15 Pro Max stocked in with 2 in Sydney warehouse
+
+2024-11-06 21:02:59,791 - INFO - Stock In: Category: Phone Product Name: Iphone 15 stocked in with 2 in Sydney warehouse
+
+2024-11-06 21:10:46,467 - WARNING - Deleted: Product Name = Iphone 15 Pro MaxProduct ID = 181 has been deleted
+
+2024-11-06 21:15:37,725 - WARNING - Deleted: Product Name = Intel DG43RK Product ID = 144 has been deleted.
+
+2024-11-06 21:59:44,110 - WARNING - Deleted: Product Name = Intel SSDPECME040T401 Product ID = 50 has been deleted from the software.
+
+2024-11-06 22:02:51,871 - WARNING - A stock of 1 is added to the Product Name = Iphone 15 Pro Max Product ID = 181.
+
+2024-11-08 19:02:18,270 - INFO - Stock In: Category: Phone Product Name: Iphone 15 plus stocked in with 10 in Beijing warehouse
+
+2024-11-13 20:48:11,549 - INFO - Stock In: Category: Phone Product Name: Iphone 14 Pro Max stocked in with 5 in Sydney warehouse
+
+2024-11-13 20:50:58,060 - INFO - Purchase: Tokyo purchased SanDisk SDSSDA-120G-G26. Bill = 1199.8
+
+2024-11-13 20:55:06,705 - WARNING - Deleted: Product Name = AMD Opteron 6378 Product ID = 136 has been deleted from the software.
+
+2024-11-13 21:02:37,130 - WARNING - Deleted: Product Name = ASRock E3C224D4M-16RE Product ID = 274 has been deleted from the software.
+
+2024-11-13 21:08:09,075 - WARNING - Edited: Product Name = AMD Redeon 6600Product ID = 186 has been Edited in the software.
+
+2024-11-13 21:11:40,713 - WARNING - Deleted: Product Name = GBL Product ID = 178 has been deleted from the software.
+
+2024-11-13 22:53:26,629 - WARNING - Edited: Product Name = Beats Product ID = 195 has been Edited in the software.
+
+2024-11-13 23:14:16,930 - INFO - Application started.
+2024-11-13 23:14:16,930 - INFO - Another log entry.
+2024-11-13 23:14:32,514 - INFO - Application started.
+2024-11-13 23:14:32,514 - INFO - Another log entry.
+2024-11-13 23:15:03,632 - WARNING - Edited: Product Name = Anker Soundcore Space Q30 Product ID = 192 has been Edited in the software.
+
+2024-11-13 23:15:41,672 - INFO - Application started.
+2024-11-13 23:15:41,672 - INFO - Another log entry.
+2024-11-14 01:46:49,596 - INFO - Application started.
+2024-11-14 01:46:49,596 - INFO - Another log entry.
+2024-11-14 02:02:00,040 - INFO - Application started.
+2024-11-14 02:02:00,040 - INFO - Another log entry.
+2024-11-14 02:03:34,033 - INFO - Application started.
+2024-11-14 02:03:34,033 - INFO - Another log entry.
+2024-11-14 02:14:07,184 - INFO - Application started.
+2024-11-14 02:14:07,184 - INFO - Another log entry.
+2024-11-14 14:47:38,974 - INFO - Purchase: Angela Lopez purchased Intel Core i7-3960X Extreme Edition, Supermicro X10SDV-8C-TLN4F. Bill = 1749.73
+
+2024-11-14 19:35:07,285 - INFO - Purchase: Protik purchased Iphone 14 Pro Max, Intel Xeon E5-2683 V4. Bill = 1974.99
+
+2024-11-14 19:35:55,980 - WARNING - Edited: Product Name = Iphone 14 Pro Max Product ID = 196 has been Edited in the software.
+
+2024-11-14 21:07:29,775 - INFO - Stock In: Category: Washing Machine Product Name: Washing Machine stocked in with 2 in my house warehouse.
+
+2024-11-14 21:22:14,187 - WARNING - Deleted: Product Name = Washing Machine Product ID = 178 has been deleted from the software.
+
+2024-11-14 21:54:27,266 - INFO - Purchase: Imran Khan purchased Intel Xeon E5-2630 V3 (OEM/Tray), Samsung MZ-75E120B/AM. Bill = 678.98
+
+2024-11-14 21:55:24,564 - WARNING - A stock of 7 is added to the Product Name = Crucial Product ID = 18.
+
+2024-11-14 21:56:13,743 - WARNING - Edited: Product Name = Asus ROG-POSEIDON-GTX1080TI-P11G-GAMING Product ID = 281 has been Edited in the software.
+
+2024-11-14 21:58:50,857 - INFO - Purchase: Imran Khan purchased Intel Xeon E5-2680 V2, Asus MAXIMUS IX CODE, Samsung MZ-75E500B/AM. Bill = 1357.1100000000001
+
+2024-11-14 21:59:47,520 - WARNING - Edited: Product Name = AMD 100-5056062 Product ID = 161 has been Edited in the software.
+
+2024-11-14 22:00:26,988 - WARNING - Deleted: Product Name = Crucial Product ID = 18 has been deleted from the software.
+
+2024-11-14 22:00:27,101 - WARNING - Deleted: Product Name = Crucial CT1050MX300SSD1 Product ID = 260 has been deleted from the software.
+
+2024-11-14 22:00:27,190 - WARNING - Deleted: Product Name = Crucial CT275MX300SSD1 Product ID = 100 has been deleted from the software.
+
+2024-11-14 22:01:11,220 - INFO - Stock In: Category: Mother Board Product Name: Gigabyte stocked in with 3 in San Francisco warehouse.
+

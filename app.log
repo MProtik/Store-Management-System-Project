@@ -53,3 +53,33 @@
 2024-11-14 02:03:34,033 - INFO - Another log entry.
 2024-11-14 02:14:07,184 - INFO - Application started.
 2024-11-14 02:14:07,184 - INFO - Another log entry.
+2024-11-14 14:47:38,974 - INFO - Purchase: Angela Lopez purchased Intel Core i7-3960X Extreme Edition, Supermicro X10SDV-8C-TLN4F. Bill = 1749.73
+
+2024-11-14 19:55:20,621 - WARNING - A stock of 3 is added to the Product Name = Anker Soundcore Space Q45 Product ID = 183.
+
+2024-11-14 19:57:02,826 - INFO - Purchase: Imran purchased MSI GAMING, ASRock EP2C612 WS, PNY SSD9SC240GMDA-RB. Bill = 1289.2
+
+2024-11-14 19:58:34,856 - WARNING - Edited: Product Name = ASRock EP2C602-4L/D16 Product ID = 39 has been Edited in the software.
+
+2024-11-14 19:58:57,923 - WARNING - Deleted: Product Name = ASRock EP2C602-4L/D16 Product ID = 39 has been deleted from the software.
+
+2024-11-14 19:59:58,779 - INFO - Stock In: Category: Washing Machine Product Name: Washing Machine stocked in with 2 in my house warehouse.
+
+2024-11-14 21:19:31,860 - WARNING - Deleted: Product Name = Washing Machine Product ID = 177 has been deleted from the software.
+
+2024-11-14 21:21:04,094 - INFO - Stock In: Category: Washing Machine Product Name: Washing Machine stocked in with 2 in my house warehouse.
+
+2024-11-14 22:09:20,200 - INFO - Purchase: Mr. Beast purchased Washing Machine, ASRock X299 Taichi, Samsung MZ-75E250B/AM. Bill = 2595.62
+
+2024-11-14 22:10:14,869 - WARNING - A stock of 5 is added to the Product Name = Washing Machine Product ID = 177.
+
+2024-11-14 22:10:39,558 - WARNING - Edited: Product Name = Washing Machine Product ID = 177 has been Edited in the software.
+
+2024-11-14 22:11:07,315 - WARNING - Deleted: Product Name = Asus TUF X299 MARK 1 Product ID = 247 has been deleted from the software.
+
+2024-11-14 22:11:07,406 - WARNING - Deleted: Product Name = Asus VANGUARD B85 Product ID = 145 has been deleted from the software.
+
+2024-11-14 22:11:07,480 - WARNING - Deleted: Product Name = Asus X99-DELUXE II Product ID = 170 has been deleted from the software.
+
+2024-11-14 22:12:01,450 - INFO - Stock In: Category: Washing Machine Product Name: Washing Machine V2 stocked in with 5 in my house warehouse.
+

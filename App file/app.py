@@ -78,7 +78,7 @@ class StoreManagementApp(tk.Tk):
         header_frame = tk.Frame(self, bg="#B0C4DE", bd=0)  # Light gray background
         header_frame.pack(pady=0, fill='x')
 
-        original_image = Image.open("F:/Python Code-Lab/Store-Management-System-Project/logo.png")  # Correct the path format
+        original_image = Image.open(r"F:\Python Code-Lab\Store-Management-System-Project\Logos\logo.png")  # Correct the path format
         logo_image = original_image.resize((80, 80), Image.LANCZOS)
         logo_image = ImageTk.PhotoImage(logo_image)
 
@@ -120,16 +120,16 @@ class StoreManagementApp(tk.Tk):
         cart_btn = tk.Button(sidebar_frame, text="Cart", command=self.show_cart, **button_style)
         cart_btn.pack(pady=10)
 
-        products_btn = tk.Button(sidebar_frame, text="Products", command=self.show_products, **button_style)
+        products_btn = tk.Button(sidebar_frame, text="Inventory\nManagement", command=self.show_products, **button_style)
         products_btn.pack(pady=10)
 
         stock_in_btn = tk.Button(sidebar_frame, text="New Stock In", command=self.show_stock_in, **button_style)
         stock_in_btn.pack(pady=10)
 
-        vendor_login_btn = tk.Button(sidebar_frame, text="Customers List", command=self.show_customer_list, **button_style)
+        vendor_login_btn = tk.Button(sidebar_frame, text="Customer\nRecords", command=self.show_customer_list, **button_style)
         vendor_login_btn.pack(pady=10)
 
-        new_product_btn = tk.Button(sidebar_frame, text="Sold Products", command=self.show_sold_product_page, **button_style)
+        new_product_btn = tk.Button(sidebar_frame, text="Sales\nTracking", command=self.show_sold_product_page, **button_style)
         new_product_btn.pack(pady=10)
 
         self.content_frame = tk.Frame(self, bg="#E6F7FF")  # Light blue background
