@@ -80,7 +80,7 @@ The **Store Management App** is a user-friendly software solution designed to he
 
 ## Screenshots
 ### Main Dashboard
-![Main Dashboard](screenshots/main-dashboard.png)
+![Main Dashboard](Screenshots/main-dashboard.png)
 
 ### Cart System
 ![Cart System](screenshots/cart-system.png)
@@ -113,7 +113,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 For any queries or support, feel free to reach out:
-- **Email:** your-email@example.com
-- **Phone:** +880-XXXX-XXXXXX
-- **GitHub:** [your-username](https://github.com/your-username)
+- **Email:** mzprotik88@gmail.com
+- **Phone:** +880-1911-922242
+- **GitHub:** MProtik(https://github.com/MProtik)
 
