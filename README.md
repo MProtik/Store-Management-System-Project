@@ -80,13 +80,16 @@ The **Store Management App** is a user-friendly software solution designed to he
 
 ## Screenshots
 ### Main Dashboard
-![Main Dashboard](Screenshots/main-dashboard.png)
+![Main Dashboard](Screenshots/Main Page & Cart Page.png)
 
-### Cart System
-![Cart System](screenshots/cart-system.png)
+### Inventory Page
+![Inventory Page](Screenshots/Invertory page.png)
 
 ### Customer Records
-![Customer Records](screenshots/customer-records.png)
+![Customer Records](Screenshots/Customer Records Page.png)
+
+### New Stockin Page
+![New Stockin Page](Screenshots/New Stockin Page.png)
 
 ---
 
@@ -115,5 +118,5 @@ This project is licensed under the [MIT License](LICENSE).
 For any queries or support, feel free to reach out:
 - **Email:** mzprotik88@gmail.com
 - **Phone:** +880-1911-922242
-- **GitHub:** MProtik(https://github.com/MProtik)
+- **GitHub:** [MProtik](https://github.com/MProtik)
 
